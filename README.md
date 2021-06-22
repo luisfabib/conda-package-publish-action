@@ -1,4 +1,4 @@
-# Publish Anaconda Package
+# Build and Publish Anaconda Package
 
 A Github Action to publish your software package to an Anaconda repository.
 
@@ -21,6 +21,8 @@ jobs:
       with:
         subDir: 'conda'
         AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}
+        platforms: 'win osx linux'
+        arch: '32 64'
 ```
 
 ### Example project structure
@@ -40,6 +42,17 @@ jobs:
 │       └── publish_conda.yml
 ├── .gitignore
 ```
+### Inputs
+
+The action takes the following 
+
+- `AnacondaToken` - Anaconda access Token (see below)
+
+- `subDir` - (Optional) Sub-directory with conda recipe. Default: `.`
+
+- `platforms` - (Optional) Platforms to build and publish. Default: `win osx linux`. (`win`: WinOS, `osx`: MacOS, `linux`: Linux)
+
+- `arch` - (Optional) Architecture to build and publish. Default: `64`. (`32`: 32-bit, `64`: 64-bit)
 
 ### ANACONDA_TOKEN
 
